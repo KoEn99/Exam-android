@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.Impl.NavigationActivity" />
+        <activity android:name=".views.Impl.NavigationActivity" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".views.Impl.RegisterActivity" />
         <activity android:name=".views.Impl.LoginActivity"
             android:windowSoftInputMode="stateVisible|adjustResize"/>

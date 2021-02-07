@@ -2,12 +2,15 @@ package com.koen.exam.views.Impl;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -69,14 +72,14 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
             frameLayout.setClickable(true);
             bottomAppBar.setHideOnScroll(false);
         });
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        /*floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sheetsCreateGroup = new SheetsCreateGroup(store);
                 sheetsCreateGroup.show(getSupportFragmentManager(), "TAG");
                 backgroundNavigation.setVisibility(View.INVISIBLE);
             }
-        });
+        });*/
         bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
@@ -107,6 +110,7 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
                 backgroundNavigation.setVisibility(View.INVISIBLE);
                 frameLayout.setClickable(false);
                 stateBottom = false;
+                menuItem.setVisible(true);
                 unVisibleArrow();
                 break;
             case R.id.nav_edit:
@@ -118,6 +122,7 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
                 stateBottom = true;
                 backgroundNavigation.setVisibility(View.INVISIBLE);
                 frameLayout.setClickable(false);
+                menuItem.setVisible(false);
                 unVisibleArrow();
                 break;
             case R.id.nav_manage:
@@ -138,5 +143,25 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
     public void unVisibleArrow(){
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowHomeEnabled(false);
+    }
+    MenuItem menuItem;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.app_bar_menu, menu);
+        menuItem = menu.findItem(R.id.search_menu);
+        SearchView searchView = (SearchView)menuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        return true;
     }
 }

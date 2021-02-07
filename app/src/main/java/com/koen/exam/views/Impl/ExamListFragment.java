@@ -9,11 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.koen.exam.R;
+import com.koen.exam.views.dialogs.SheetsCreateGroup;
 
 import java.util.Objects;
 
 public class ExamListFragment extends Fragment {
+    FloatingActionButton floatingActionButton;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +29,14 @@ public class ExamListFragment extends Fragment {
         NavigationActivity navigationActivity = (NavigationActivity)getActivity();
         navigationActivity.visibleArrow();
         navigationActivity.getSupportActionBar().setTitle("Редактирование курса");
-        navigationActivity.floatingActionButton.hide();
+        floatingActionButton = (FloatingActionButton)navigationActivity.findViewById(R.id.fab);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction().
+                        replace(R.id.scrim, new ExamCreationFragment()).commit();
+            }
+        });
         return view;
     }
 }
