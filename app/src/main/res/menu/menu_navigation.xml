@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_main"
+            android:icon="@drawable/vector_school"
+            android:title="@string/menuMain" />
+        <item
+            android:id="@+id/nav_edit"
+            android:icon="@drawable/vector_edit"
+            android:title="@string/menuEdit" />
+        <item
+            android:id="@+id/nav_store"
+            android:icon="@drawable/vector_store"
+            android:title="@string/menuStore" />
+    </group>
+    <item android:title="Дополнительно">
+        <menu>
+
+            <item
+                android:id="@+id/nav_manage"
+                android:icon="@drawable/vector_settings"
+                android:title="@string/menuSettings" />
+        </menu>
+    </item>
+</menu>
