@@ -45,7 +45,7 @@ public class EditFragment extends Fragment implements CoursesView {
     @Override
     public void initialListCoursesAdapter(List<GroupInfo> groupInfoList) {
         this.groupInfoList = groupInfoList;
-        groupAdapter = new GroupAdapter(groupInfoList);
+        groupAdapter = new GroupAdapter(groupInfoList, getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setAdapter(groupAdapter);
     }

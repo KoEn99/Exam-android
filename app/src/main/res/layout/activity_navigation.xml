@@ -22,7 +22,7 @@
 
     <FrameLayout
         android:id="@+id/backgroundNavigation"
-        android:background="#80888888"
+        android:background="#00888888"
         android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

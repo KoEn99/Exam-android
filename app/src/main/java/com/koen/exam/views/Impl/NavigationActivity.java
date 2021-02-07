@@ -1,29 +1,24 @@
 package com.koen.exam.views.Impl;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.FrameLayout;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.koen.exam.DataSingleton;
 import com.koen.exam.MainActivity;
 import com.koen.exam.R;
-import com.koen.exam.views.CoursesView;
 import com.koen.exam.views.dialogs.SheetsCreateGroup;
-
-import java.util.Objects;
 
 import static com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN;
 
