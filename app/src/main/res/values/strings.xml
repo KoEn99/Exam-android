@@ -20,4 +20,7 @@
     <string name="textViewGroupName">Введите название группы</string>
     <string name="courseDescription">Описание курса (необязательно)</string>
     <string name="courseName">Название курса</string>
+    <string name="editCourseClick">Редактировать</string>
+    <string name="groupEditClick">Группы</string>
+    <string name="removeEditRecycle">Удалить</string>
 </resources>

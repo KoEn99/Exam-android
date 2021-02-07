@@ -9,20 +9,26 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.koen.exam.R;
 import com.koen.exam.model.GroupInfo;
+import com.koen.exam.views.Impl.EditFragment;
+import com.koen.exam.views.Impl.MainFragment;
 import com.koen.exam.views.Impl.NavigationActivity;
+import com.koen.exam.views.dialogs.SheetClickOnEditRecycle;
+import com.koen.exam.views.dialogs.SheetsCreateGroup;
 
 import java.util.List;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> {
 
     private List<GroupInfo> groupInfoList;
-    Context context;
+    FragmentActivity context;
 
-    public GroupAdapter(List<GroupInfo> groupInfoList, Context context) {
+    public GroupAdapter(List<GroupInfo> groupInfoList, FragmentActivity context) {
         this.context = context;
         this.groupInfoList = groupInfoList;
     }
@@ -35,7 +41,6 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.edit_item, parent, false);
-        context = parent.getContext();
         return new ViewHolder(view);
     }
 
@@ -44,13 +49,9 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
         GroupInfo groupInfo = groupInfoList.get(position);
         holder.titleTextView.setText(groupInfo.getTitle());
         holder.descTextView.setText(groupInfo.getDescription());
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast toast = Toast.makeText(context,
-                        "НАЖАЛ" + String.valueOf(position), Toast.LENGTH_SHORT);
-                toast.show();
-            }
+        holder.cardView.setOnClickListener(v -> {
+            SheetClickOnEditRecycle sheetsCreateGroup = new SheetClickOnEditRecycle();
+            sheetsCreateGroup.show(context.getSupportFragmentManager(), "TAG1");
         });
     }
 

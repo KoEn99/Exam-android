@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -19,6 +20,8 @@ import com.koen.exam.DataSingleton;
 import com.koen.exam.MainActivity;
 import com.koen.exam.R;
 import com.koen.exam.views.dialogs.SheetsCreateGroup;
+
+import java.util.Objects;
 
 import static com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN;
 
@@ -104,6 +107,7 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
                 backgroundNavigation.setVisibility(View.INVISIBLE);
                 frameLayout.setClickable(false);
                 stateBottom = false;
+                unVisibleArrow();
                 break;
             case R.id.nav_edit:
                 ft.replace(R.id.scrim, store);
@@ -114,6 +118,7 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
                 stateBottom = true;
                 backgroundNavigation.setVisibility(View.INVISIBLE);
                 frameLayout.setClickable(false);
+                unVisibleArrow();
                 break;
             case R.id.nav_manage:
                 dataSingleton = DataSingleton.getInstance();
@@ -125,5 +130,13 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
 
         ft.commit();
         return true;
+    }
+    public void visibleArrow(){
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+    public void unVisibleArrow(){
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
     }
 }
