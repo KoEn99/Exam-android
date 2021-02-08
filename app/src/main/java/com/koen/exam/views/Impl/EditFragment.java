@@ -12,24 +12,22 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.koen.exam.DataSingleton;
 import com.koen.exam.R;
-import com.koen.exam.model.GroupInfo;
+import com.koen.exam.model.CourseInfo;
 import com.koen.exam.presenter.CoursesPresenter;
 import com.koen.exam.presenter.Impl.CoursesPresenterImpl;
-import com.koen.exam.recycleAdapter.adapter.GroupAdapter;
+import com.koen.exam.recycleAdapter.adapter.CourseAdapter;
 import com.koen.exam.views.CoursesView;
 import com.koen.exam.views.dialogs.SheetsCreateGroup;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EditFragment extends Fragment implements CoursesView {
     CoursesPresenter coursesPresenter;
     View view;
     RecyclerView recyclerView;
-    List<GroupInfo> groupInfoList;
-    GroupAdapter groupAdapter;
+    List<CourseInfo> courseInfoList;
+    CourseAdapter courseAdapter;
     FloatingActionButton floatingActionButton;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,17 +54,17 @@ public class EditFragment extends Fragment implements CoursesView {
     }
 
     @Override
-    public void initialListCoursesAdapter(List<GroupInfo> groupInfoList) {
-        this.groupInfoList = groupInfoList;
-        groupAdapter = new GroupAdapter(groupInfoList, getActivity());
+    public void initialListCoursesAdapter(List<CourseInfo> courseInfoList) {
+        this.courseInfoList = courseInfoList;
+        courseAdapter = new CourseAdapter(courseInfoList, getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(groupAdapter);
+        recyclerView.setAdapter(courseAdapter);
     }
 
     @Override
-    public void adapterDataChanger(GroupInfo groupInfo) {
-        groupInfoList.add(groupInfo);
-        groupAdapter.dataChanged(groupInfoList);
+    public void adapterDataChanger(CourseInfo courseInfo) {
+        courseInfoList.add(courseInfo);
+        courseAdapter.dataChanged(courseInfoList);
     }
 
     @Override

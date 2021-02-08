@@ -23,4 +23,5 @@
     <string name="editCourseClick">Редактировать</string>
     <string name="groupEditClick">Группы</string>
     <string name="removeEditRecycle">Удалить</string>
+    <string name="nameCourse">Название курса</string>
 </resources>

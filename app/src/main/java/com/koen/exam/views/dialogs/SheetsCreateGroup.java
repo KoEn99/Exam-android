@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.textfield.TextInputEditText;
 import com.koen.exam.R;
-import com.koen.exam.model.GroupInfo;
+import com.koen.exam.model.CourseInfo;
 import com.koen.exam.presenter.CoursesPresenter;
 import com.koen.exam.presenter.Impl.CoursesPresenterImpl;
 import com.koen.exam.views.CoursesView;
@@ -42,7 +42,7 @@ public class SheetsCreateGroup extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 coursesPresenter.createMyCourse(
-                        new GroupInfo("", Objects.requireNonNull(nameEditText.getText()).toString(), descEditText.getText().toString())
+                        new CourseInfo("", Objects.requireNonNull(nameEditText.getText()).toString(), descEditText.getText().toString())
                 );
                 SheetsCreateGroup.this.dismiss();
             }

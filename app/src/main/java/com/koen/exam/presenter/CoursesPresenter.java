@@ -1,9 +1,9 @@
 package com.koen.exam.presenter;
 
-import com.koen.exam.model.GroupInfo;
+import com.koen.exam.model.CourseInfo;
 
 public interface CoursesPresenter extends GlobalPresenter{
     void getMyCourses();
-    void createMyCourse(GroupInfo groupInfo);
-    void finishCreateMyCourse(GroupInfo groupInfo);
+    void createMyCourse(CourseInfo courseInfo);
+    void finishCreateMyCourse(CourseInfo courseInfo);
 }

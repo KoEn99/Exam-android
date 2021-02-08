@@ -36,4 +36,7 @@ public class NetworkService {
     public CoursesApi coursesApi() {
         return mRetrofit.create(CoursesApi.class);
     }
+    public GroupApi groupApi(){
+        return mRetrofit.create(GroupApi.class);
+    }
 }

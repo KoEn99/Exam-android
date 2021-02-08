@@ -12,37 +12,36 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.koen.exam.R;
 import com.koen.exam.model.CourseInfo;
-import com.koen.exam.model.GroupInfo;
 import com.koen.exam.views.dialogs.SheetClickOnEditRecycle;
 
 import java.util.List;
 
-public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder>{
+public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder> {
 
-    private List<GroupInfo> groupInfoList;
+    private List<CourseInfo> courseInfoList;
     FragmentActivity context;
 
-    public GroupAdapter(List<GroupInfo> groupInfoList, FragmentActivity context) {
+    public CourseAdapter(List<CourseInfo> courseInfoList, FragmentActivity context) {
         this.context = context;
-        this.groupInfoList = groupInfoList;
+        this.courseInfoList = courseInfoList;
     }
-    public void dataChanged(List<GroupInfo> groupInfoList){
-        this.groupInfoList = groupInfoList;
+    public void dataChanged(List<CourseInfo> courseInfoList){
+        this.courseInfoList = courseInfoList;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public GroupAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.edit_item, parent, false);
-        return new GroupAdapter.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GroupAdapter.ViewHolder holder, int position) {
-        GroupInfo groupInfo = groupInfoList.get(position);
-        holder.titleTextView.setText(groupInfo.getCourseInfo().getTitle());
-        holder.descTextView.setText(groupInfo.getCourseInfo().getDescription());
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        CourseInfo courseInfo = courseInfoList.get(position);
+        holder.titleTextView.setText(courseInfo.getTitle());
+        holder.descTextView.setText(courseInfo.getDescription());
         holder.cardView.setOnClickListener(v -> {
             SheetClickOnEditRecycle sheetsCreateGroup = new SheetClickOnEditRecycle();
             sheetsCreateGroup.show(context.getSupportFragmentManager(), "TAG1");
@@ -51,7 +50,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder>{
 
     @Override
     public int getItemCount() {
-        return groupInfoList.size();
+        return courseInfoList.size();
     }
 
 

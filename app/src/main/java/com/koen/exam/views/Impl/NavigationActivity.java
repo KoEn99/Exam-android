@@ -1,11 +1,13 @@
 package com.koen.exam.views.Impl;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
@@ -145,15 +147,20 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
         getSupportActionBar().setDisplayShowHomeEnabled(false);
     }
     MenuItem menuItem;
+    SearchView searchView;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.app_bar_menu, menu);
         menuItem = menu.findItem(R.id.search_menu);
-        SearchView searchView = (SearchView)menuItem.getActionView();
+        searchView = (SearchView)menuItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                main.findByName(query);
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+                searchView.setQuery("", false);
                 return true;
             }
 
