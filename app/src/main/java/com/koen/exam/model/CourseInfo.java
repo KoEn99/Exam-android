@@ -9,4 +9,5 @@ public class CourseInfo {
     private String id;
     private String title;
     private String description;
+    private User userEntity;
 }

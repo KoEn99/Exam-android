@@ -12,11 +12,16 @@ import androidx.annotation.Nullable;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.koen.exam.R;
 import com.koen.exam.views.Impl.ExamListFragment;
+import com.koen.exam.views.Impl.GroupFragment;
 
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public class SheetClickOnEditRecycle extends BottomSheetDialogFragment {
+    String idCourse;
+    public SheetClickOnEditRecycle(String idCourse){
+        this.idCourse = idCourse;
+    }
     LinearLayout editLinear, groupLinear, removeLinear;
     @Nullable
     @Override
@@ -31,6 +36,14 @@ public class SheetClickOnEditRecycle extends BottomSheetDialogFragment {
                     getActivity().getSupportFragmentManager().beginTransaction().
                             replace(R.id.scrim, new ExamListFragment()).commit();
                     SheetClickOnEditRecycle.this.dismiss();
+            }
+        });
+        groupLinear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction().
+                        replace(R.id.scrim, new GroupFragment(idCourse)).commit();
+                SheetClickOnEditRecycle.this.dismiss();
             }
         });
         return view;

@@ -43,7 +43,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         holder.titleTextView.setText(courseInfo.getTitle());
         holder.descTextView.setText(courseInfo.getDescription());
         holder.cardView.setOnClickListener(v -> {
-            SheetClickOnEditRecycle sheetsCreateGroup = new SheetClickOnEditRecycle();
+            SheetClickOnEditRecycle sheetsCreateGroup = new SheetClickOnEditRecycle(courseInfo.getId());
             sheetsCreateGroup.show(context.getSupportFragmentManager(), "TAG1");
         });
     }

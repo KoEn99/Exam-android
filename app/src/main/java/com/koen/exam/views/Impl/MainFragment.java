@@ -26,6 +26,7 @@ import com.koen.exam.views.GroupView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MainFragment extends Fragment implements GroupView {
     GroupPresenter groupPresenter;
@@ -44,20 +45,15 @@ public class MainFragment extends Fragment implements GroupView {
         recyclerView = (RecyclerView)view.findViewById(R.id.recycleGroupView);
         NavigationActivity navigationActivity = (NavigationActivity)getActivity();
         groupPresenter = new GroupPresenterImpl(this);
-        initialGroupAdapter(new ArrayList<>());
-        new MaterialAlertDialogBuilder(getActivity()).setTitle("qwer")
-                .setMessage("dsadas").setPositiveButton("ОК, иду на кухню", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // Закрываем окно
-                dialog.cancel();
-            }
-        });
+        groupPresenter.getMyGroup();
         return view;
     }
 
     @Override
     public void createToast(String toastMessage) {
-
+        Toast toast = Toast.makeText(getContext(),
+                toastMessage, Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     @Override
@@ -77,5 +73,29 @@ public class MainFragment extends Fragment implements GroupView {
     public void adapterDataChanger(GroupInfo groupInfo) {
         groupInfoList.add(groupInfo);
         groupAdapter.dataChanged(groupInfoList);
+    }
+
+    @Override
+    public void showDialog(GroupInfo groupInfo) {
+        new MaterialAlertDialogBuilder(Objects.requireNonNull(getContext()))
+                .setTitle(groupInfo.getCoursesEntity().getTitle())
+                .setMessage(groupInfo.getCoursesEntity().getDescription().substring(0,
+                        (int) (groupInfo.getCoursesEntity().getDescription().length()*0.75)) + "..." + "\n"
+                + "Создатель: " + groupInfo.getCoursesEntity().getUserEntity().getFirstName() + " " +
+                        groupInfo.getCoursesEntity().getUserEntity().getLastName() + " " +
+                        groupInfo.getCoursesEntity().getUserEntity().getMiddleName() + " ")
+                .setPositiveButton("Вступить", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        groupPresenter.joinInGroup(groupInfo.getId().substring(0,4));
+                    }
+                })
+                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .show();
     }
 }

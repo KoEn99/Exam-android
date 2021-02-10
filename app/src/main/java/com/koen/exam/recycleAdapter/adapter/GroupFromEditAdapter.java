@@ -11,18 +11,16 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.koen.exam.R;
-import com.koen.exam.model.CourseInfo;
 import com.koen.exam.model.GroupInfo;
 import com.koen.exam.views.dialogs.SheetClickOnEditRecycle;
 
 import java.util.List;
 
-public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder>{
-
+public class GroupFromEditAdapter extends RecyclerView.Adapter<GroupFromEditAdapter.ViewHolder>{
     private List<GroupInfo> groupInfoList;
     FragmentActivity context;
 
-    public GroupAdapter(List<GroupInfo> groupInfoList, FragmentActivity context) {
+    public GroupFromEditAdapter(List<GroupInfo> groupInfoList, FragmentActivity context) {
         this.context = context;
         this.groupInfoList = groupInfoList;
     }
@@ -33,13 +31,13 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder>{
 
     @NonNull
     @Override
-    public GroupAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public GroupFromEditAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.edit_item, parent, false);
-        return new GroupAdapter.ViewHolder(view);
+        return new GroupFromEditAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GroupAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull GroupFromEditAdapter.ViewHolder holder, int position) {
         GroupInfo groupInfo = groupInfoList.get(position);
         holder.titleTextView.setText(groupInfo.getCoursesEntity().getTitle());
         holder.descTextView.setText(groupInfo.getCoursesEntity().getDescription());

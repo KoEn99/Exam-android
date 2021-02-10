@@ -8,4 +8,5 @@ public interface GroupView extends GlobalView{
     void findByName(String name);
     void initialGroupAdapter(List<GroupInfo> groupInfoList);
     void adapterDataChanger(GroupInfo groupInfo);
+    void showDialog(GroupInfo groupInfo);
 }

@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class GroupInfo {
     private String id;
     private String name;
-    private CourseInfo courseInfo;
+    private CourseInfo coursesEntity;
 }

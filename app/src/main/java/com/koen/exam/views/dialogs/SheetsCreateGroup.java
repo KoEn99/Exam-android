@@ -42,7 +42,8 @@ public class SheetsCreateGroup extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 coursesPresenter.createMyCourse(
-                        new CourseInfo("", Objects.requireNonNull(nameEditText.getText()).toString(), descEditText.getText().toString())
+                        new CourseInfo("", Objects.requireNonNull(nameEditText.getText()).toString(),
+                                descEditText.getText().toString(), null)
                 );
                 SheetsCreateGroup.this.dismiss();
             }
