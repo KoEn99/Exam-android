@@ -2,7 +2,6 @@ package com.koen.exam.views.Impl;
 
 import android.os.Bundle;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -11,9 +10,6 @@ import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.koen.exam.R;
-import com.koen.exam.views.dialogs.SheetsCreateGroup;
-
-import java.util.Objects;
 
 public class ExamListFragment extends Fragment {
     FloatingActionButton floatingActionButton;

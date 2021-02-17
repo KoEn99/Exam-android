@@ -22,12 +22,12 @@ import java.util.Objects;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-public class SheetsCreateGroup extends BottomSheetDialogFragment {
+public class SheetsCreateCourse extends BottomSheetDialogFragment {
     Button buttonCreateCourse;
     TextInputEditText nameEditText, descEditText;
     CoursesPresenter coursesPresenter;
-    SheetsCreateGroup sheetsCreateGroup;
-    public SheetsCreateGroup(CoursesView coursesView) {
+    SheetsCreateCourse sheetsCreateCourse;
+    public SheetsCreateCourse(CoursesView coursesView) {
         this.coursesPresenter = new CoursesPresenterImpl(coursesView);
     }
 
@@ -45,7 +45,7 @@ public class SheetsCreateGroup extends BottomSheetDialogFragment {
                         new CourseInfo("", Objects.requireNonNull(nameEditText.getText()).toString(),
                                 descEditText.getText().toString(), null)
                 );
-                SheetsCreateGroup.this.dismiss();
+                SheetsCreateCourse.this.dismiss();
             }
         });
         return view;

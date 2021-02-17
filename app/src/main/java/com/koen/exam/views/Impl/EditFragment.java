@@ -18,7 +18,7 @@ import com.koen.exam.presenter.CoursesPresenter;
 import com.koen.exam.presenter.Impl.CoursesPresenterImpl;
 import com.koen.exam.recycleAdapter.adapter.CourseAdapter;
 import com.koen.exam.views.CoursesView;
-import com.koen.exam.views.dialogs.SheetsCreateGroup;
+import com.koen.exam.views.dialogs.SheetsCreateCourse;
 
 import java.util.List;
 
@@ -45,8 +45,8 @@ public class EditFragment extends Fragment implements CoursesView {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navigationActivity.sheetsCreateGroup = new SheetsCreateGroup(navigationActivity.store);
-                navigationActivity.sheetsCreateGroup.show(navigationActivity.getSupportFragmentManager(), "TAG");
+                navigationActivity.sheetsCreateCourse = new SheetsCreateCourse(navigationActivity.store);
+                navigationActivity.sheetsCreateCourse.show(navigationActivity.getSupportFragmentManager(), "TAG");
                 navigationActivity.backgroundNavigation.setVisibility(View.INVISIBLE);
             }
         });

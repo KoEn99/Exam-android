@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.koen.exam.R;
 import com.koen.exam.model.GroupInfo;
+import com.koen.exam.views.Impl.ExamListFragment;
+import com.koen.exam.views.Impl.UserGroupFragment;
 import com.koen.exam.views.dialogs.SheetClickOnEditRecycle;
 
 import java.util.List;
@@ -32,18 +34,18 @@ public class GroupFromEditAdapter extends RecyclerView.Adapter<GroupFromEditAdap
     @NonNull
     @Override
     public GroupFromEditAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.edit_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.group_item, parent, false);
         return new GroupFromEditAdapter.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull GroupFromEditAdapter.ViewHolder holder, int position) {
         GroupInfo groupInfo = groupInfoList.get(position);
-        holder.titleTextView.setText(groupInfo.getCoursesEntity().getTitle());
-        holder.descTextView.setText(groupInfo.getCoursesEntity().getDescription());
+        holder.titleTextView.setText(groupInfo.getName());
+        holder.descTextView.setText("Имя группы в поиске: " + groupInfo.getId().substring(0,4));
         holder.cardView.setOnClickListener(v -> {
-            SheetClickOnEditRecycle sheetsCreateGroup = new SheetClickOnEditRecycle();
-            sheetsCreateGroup.show(context.getSupportFragmentManager(), "TAG1");
+            context.getSupportFragmentManager().beginTransaction().
+                    replace(R.id.scrim, new UserGroupFragment(groupInfo.getId().substring(0,4))).commit();
         });
     }
 
@@ -59,8 +61,8 @@ public class GroupFromEditAdapter extends RecyclerView.Adapter<GroupFromEditAdap
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             cardView = (CardView)itemView.findViewById(R.id.card);
-            titleTextView = (TextView)itemView.findViewById(R.id.titleTextViewItemGroup);
-            descTextView = (TextView)itemView.findViewById(R.id.descTextViewGroup);
+            titleTextView = (TextView)itemView.findViewById(R.id.nameGroupTextView);
+            descTextView = (TextView)itemView.findViewById(R.id.idGroupTextView);
         }
     }
 }

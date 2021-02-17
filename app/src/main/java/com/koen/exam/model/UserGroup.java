@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CourseInfo {
+public class UserGroup {
     private String id;
-    private String title;
-    private String description;
-    private User userEntity;
+    private String firstName;
+    private String lastName;
+    private String middleName;
+    private String email;
 }

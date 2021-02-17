@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -24,7 +23,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.koen.exam.DataSingleton;
 import com.koen.exam.MainActivity;
 import com.koen.exam.R;
-import com.koen.exam.views.dialogs.SheetsCreateGroup;
+import com.koen.exam.views.dialogs.SheetsCreateCourse;
 
 import java.util.Objects;
 
@@ -39,7 +38,7 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
     FloatingActionButton floatingActionButton;
     Boolean stateBottom = false;
     DataSingleton dataSingleton;
-    SheetsCreateGroup sheetsCreateGroup;
+    SheetsCreateCourse sheetsCreateCourse;
     Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
