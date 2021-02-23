@@ -17,7 +17,16 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="createGroup">Создать группу</string>
     <string name="nameGroup">Название группы</string>
-    <string name="textViewGroupName">Введите название группы</string>
+
+    <string name="viewCreateExam">Введите название теста</string>
+
+    <string name="editExamName">Название теста</string>
+
+    <string name="btnCreateExam">Создать тест</string>
+
+    <string name="editExamDescription">Описание теста (необязательно)</string>
+
+    <string name="textViewGroupName">Введите название курса</string>
     <string name="courseDescription">Описание курса (необязательно)</string>
     <string name="courseName">Название курса</string>
     <string name="editCourseClick">Редактировать</string>

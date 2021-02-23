@@ -73,4 +73,14 @@ public class EditFragment extends Fragment implements CoursesView {
                 toastMessage, Toast.LENGTH_SHORT);
         toast.show();
     }
+
+    @Override
+    public void showFailMessage() {
+
+    }
+
+    @Override
+    public void showSuccessMessage() {
+
+    }
 }

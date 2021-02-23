@@ -45,4 +45,14 @@ public class RegisterPresenterImpl implements RegisterPresenter {
     public void registerUser(AuthDto authDto) {
         registerService.createUser(authDto);
     }
+
+    @Override
+    public void onFail() {
+        registerView.showFailMessage();
+    }
+
+    @Override
+    public void onSuccess() {
+        registerView.showSuccessMessage();
+    }
 }

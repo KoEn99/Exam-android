@@ -9,8 +9,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkService {
     private static NetworkService mInstance;
-    private static final String BASE_URL = "http://192.168.100.5:8000";
+    private static final String BASE_URL = "http://37.21.247.181:8000";
     private Retrofit mRetrofit;
+    JSONPlaceHolderApi api;
 
     private NetworkService() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -22,6 +23,7 @@ public class NetworkService {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        api = mRetrofit.create(JSONPlaceHolderApi.class);
     }
 
     public static NetworkService getInstance() {
@@ -30,13 +32,9 @@ public class NetworkService {
         }
         return mInstance;
     }
-    public AuthApi getJSONApi() {
-        return mRetrofit.create(AuthApi.class);
+
+    public JSONPlaceHolderApi getJSONApi() {
+        return api;
     }
-    public CoursesApi coursesApi() {
-        return mRetrofit.create(CoursesApi.class);
-    }
-    public GroupApi groupApi(){
-        return mRetrofit.create(GroupApi.class);
-    }
+
 }

@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -71,5 +73,18 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void createToast(String toastMessage) {
         Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showFailMessage() {
+        Toast.makeText(getApplicationContext(),"Непредвиденная ошибка",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showSuccessMessage() {
+        Toast.makeText(getApplicationContext(),"Вы успешно зарегистрировались!",Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

@@ -23,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
         if (dataSingleton.jwtToken.equals("")){
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
-        } else startActivity( new Intent(MainActivity.this, NavigationActivity.class));
+        } else {
+            startActivity(new Intent(MainActivity.this, NavigationActivity.class));
+        }
 
     }
     private void initSharedPreferences(){

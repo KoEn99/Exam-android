@@ -89,4 +89,14 @@ public class GroupFragment extends Fragment implements GroupView {
     public void createToast(String toastMessage) {
 
     }
+
+    @Override
+    public void showFailMessage() {
+
+    }
+
+    @Override
+    public void showSuccessMessage() {
+
+    }
 }

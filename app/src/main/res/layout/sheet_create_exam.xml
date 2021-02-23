@@ -23,7 +23,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="30dp"
         android:textAppearance="?attr/textAppearanceHeadline6"
-        android:text="@string/textViewGroupName" />
+        android:text="@string/viewCreateExam" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,14 +33,14 @@
         android:layout_marginEnd="32dp"
         android:ems="10"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:hint="@string/courseName"
+        android:hint="@string/editExamName"
         app:boxBackgroundColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextNameCourse"
+            android:id="@+id/editTextNameExam"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -51,24 +52,25 @@
         android:layout_marginEnd="32dp"
         android:ems="10"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:hint="@string/courseDescription"
+        android:hint="@string/editExamDescription"
         app:boxBackgroundColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextDescriptionCourse"
+            android:id="@+id/editTextDescriptionExam"
             android:layout_width="match_parent"
             android:inputType="textMultiLine"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
     <Button
-        android:id="@+id/postCreateCourse"
+        android:id="@+id/postCreateExam"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/createGroup"/>
+        android:text="@string/btnCreateExam"/>
+
 </LinearLayout>

@@ -53,7 +53,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         return courseInfoList.size();
     }
 
-
     public class ViewHolder extends RecyclerView.ViewHolder  {
         TextView titleTextView, descTextView;
         CardView cardView;
