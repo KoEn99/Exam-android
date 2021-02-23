@@ -10,8 +10,15 @@ import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.koen.exam.R;
+import com.koen.exam.views.CreateExamMethods;
+import com.koen.exam.views.dialogs.SheetCreateExam;
 
-public class ExamCreationFragment extends Fragment implements View.OnClickListener {
+public class ExamCreationFragment extends Fragment implements View.OnClickListener, CreateExamMethods.View {
+    String groupId;
+    NavigationActivity navigationActivity;
+    public ExamCreationFragment(String id){
+        this.groupId = id;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -22,7 +29,7 @@ public class ExamCreationFragment extends Fragment implements View.OnClickListen
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exam_creation, container, false);
-        NavigationActivity navigationActivity = (NavigationActivity)getActivity();
+        navigationActivity = (NavigationActivity)getActivity();
         navigationActivity.getSupportActionBar().setTitle("Создание теста");
 
         FloatingActionButton floatingActionButton = navigationActivity.findViewById(R.id.fab);
@@ -33,8 +40,20 @@ public class ExamCreationFragment extends Fragment implements View.OnClickListen
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.fab){
-
+            SheetCreateExam sheetCreateExam = new SheetCreateExam(ExamCreationFragment.this,groupId);
+            sheetCreateExam.show(navigationActivity.getSupportFragmentManager(),"TAG");
+            navigationActivity.backgroundNavigation.setVisibility(View.INVISIBLE);
         }
+
+    }
+
+    @Override
+    public void onSuccess() {
+
+    }
+
+    @Override
+    public void onFail() {
 
     }
 }

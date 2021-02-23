@@ -3,6 +3,7 @@ package com.koen.exam.net;
 import com.koen.exam.model.AnswerResponse;
 import com.koen.exam.model.AuthDto;
 import com.koen.exam.model.CourseInfo;
+import com.koen.exam.model.ExamModel;
 import com.koen.exam.model.GenericResponse;
 import com.koen.exam.model.GroupInfo;
 import com.koen.exam.model.Token;
@@ -18,6 +19,9 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface JSONPlaceHolderApi {
+
+    @POST("/exam/create")
+    Call<GenericResponse<CourseInfo>> createExam(@Body ExamModel model, @Header("Authorization") String token);
 
     @POST("/course/create")
     Call<GenericResponse<CourseInfo>> createMyCourse(@Body CourseInfo courseInfo, @Header("Authorization") String authToken);

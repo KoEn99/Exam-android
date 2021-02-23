@@ -34,7 +34,7 @@ public class SheetClickOnEditRecycle extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                     getActivity().getSupportFragmentManager().beginTransaction().
-                            replace(R.id.scrim, new ExamListFragment()).commit();
+                            replace(R.id.scrim, new ExamListFragment(idCourse)).commit();
                     SheetClickOnEditRecycle.this.dismiss();
             }
         });
