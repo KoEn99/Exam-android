@@ -57,6 +57,16 @@ public class MainFragment extends Fragment implements GroupView {
     }
 
     @Override
+    public void showFailMessage() {
+
+    }
+
+    @Override
+    public void showSuccessMessage() {
+
+    }
+
+    @Override
     public void findByName(String name) {
         groupPresenter.findByName(name);
     }

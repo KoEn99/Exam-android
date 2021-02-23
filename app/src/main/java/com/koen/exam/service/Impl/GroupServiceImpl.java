@@ -25,7 +25,7 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public void findByName(String name, String authToken) {
         NetworkService.getInstance()
-                .groupApi()
+                .getJSONApi()
                 .findByName(name, authToken)
                 .enqueue(new Callback<GenericResponse<GroupInfo>>() {
                     @SneakyThrows
@@ -49,7 +49,7 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public void joinInGroup(String name, String authToken) {
         NetworkService.getInstance()
-                .groupApi()
+                .getJSONApi()
                 .joinInGroup(name, authToken)
                 .enqueue(new Callback<GenericResponse<GroupInfo>>() {
                     @SneakyThrows
@@ -72,7 +72,7 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public void getMyGroup(String authToken) {
         NetworkService.getInstance()
-                .groupApi()
+                .getJSONApi()
                 .getMyGroup(authToken)
                 .enqueue(new Callback<GenericResponse<List<GroupInfo>>>() {
                     @SneakyThrows
@@ -95,7 +95,7 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public void getGroupByCourse(String courseId, String authToken) {
         NetworkService.getInstance()
-                .groupApi()
+                .getJSONApi()
                 .getGroupByCourse(courseId, authToken)
                 .enqueue(new Callback<GenericResponse<List<GroupInfo>>>() {
                     @SneakyThrows
@@ -119,7 +119,7 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public void addGroup(GroupInfo groupInfo, String authToken) {
         NetworkService.getInstance()
-                .groupApi()
+                .getJSONApi()
                 .addGroup(groupInfo, authToken)
                 .enqueue(new Callback<GenericResponse<GroupInfo>>() {
                     @SneakyThrows
@@ -142,7 +142,7 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public void getGroupUser(String groupName, String authToken) {
         NetworkService.getInstance()
-                .groupApi()
+                .getJSONApi()
                 .getUserGroup(groupName, authToken)
                 .enqueue(new Callback<GenericResponse<List<UserGroup>>>() {
                     @SneakyThrows

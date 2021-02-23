@@ -23,6 +23,8 @@ import com.koen.exam.views.LoginView;
 
 import org.w3c.dom.Text;
 
+
+
 public class LoginActivity extends AppCompatActivity implements LoginView, View.OnClickListener {
     Button postAuthButton;
     TextInputEditText emailEditText, passwordEditText;
@@ -52,15 +54,28 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
                 toastMessage, Toast.LENGTH_SHORT);
         toast.show();
     }
+
+    @Override
+    public void showFailMessage() {
+
+    }
+
+    @Override
+    public void showSuccessMessage() {
+
+    }
+
     @Override
     public void saveJwtToken(String jwtToken){
         dataSingleton.saveInSharedPreferencesString("jwtToken", "Bearer " + jwtToken);
         dataSingleton.jwtToken = "Bearer " + jwtToken;
     }
+
     @Override
     public void selectActivity(){
         Intent intent = new Intent(LoginActivity.this, NavigationActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @SuppressLint("NonConstantResourceId")

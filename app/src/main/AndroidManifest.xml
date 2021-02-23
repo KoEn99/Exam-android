@@ -17,7 +17,9 @@
         <activity android:name=".views.Impl.RegisterActivity" />
         <activity android:name=".views.Impl.LoginActivity"
             android:windowSoftInputMode="stateVisible|adjustResize"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:noHistory="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

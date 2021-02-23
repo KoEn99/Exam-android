@@ -21,7 +21,7 @@ public class CoursesServiceImpl implements CoursesService {
     @Override
     public void getMyCourses(String authToken) {
         NetworkService.getInstance()
-                .coursesApi()
+                .getJSONApi()
                 .getMyCourses(authToken)
                 .enqueue(new Callback<GenericResponse<List<CourseInfo>>>() {
                     @SneakyThrows
@@ -42,7 +42,7 @@ public class CoursesServiceImpl implements CoursesService {
     @Override
     public void crateMyCourse(CourseInfo courseInfo, String authToken) {
         NetworkService.getInstance()
-                .coursesApi()
+                .getJSONApi()
                 .createMyCourse(courseInfo,authToken)
                 .enqueue(new Callback<GenericResponse<CourseInfo>>() {
                     @SneakyThrows

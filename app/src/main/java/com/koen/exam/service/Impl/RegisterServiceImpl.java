@@ -28,13 +28,30 @@ public class RegisterServiceImpl implements RegisterService {
                 .enqueue(new Callback<GenericResponse<AnswerResponse>>() {
                     @Override
                     public void onResponse(Call<GenericResponse<AnswerResponse>> call, Response<GenericResponse<AnswerResponse>> response) {
-                        registerPresenter.listenerFinish(response.body());
+                        if(response.isSuccessful()){
+                            registerPresenter.onSuccess();
+                        }
+                        else{
+                            registerPresenter.onFail();
+                        }
                     }
 
                     @Override
                     public void onFailure(Call<GenericResponse<AnswerResponse>> call, Throwable t) {
-
+                        registerPresenter.onFail();
                     }
                 });
     }
+
+    @Override
+    public void onFail() {
+
+    }
+
+    @Override
+    public void onSuccess() {
+
+    }
+
+
 }
