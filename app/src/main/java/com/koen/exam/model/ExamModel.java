@@ -6,21 +6,22 @@ public class ExamModel {
     private Integer timeWatch;
     private String statusType;
     private String coursesEntity;
+    private Integer id;
 
-    public ExamModel(String tittle, String description, Integer timeWatch, String statusType, String coursesEntity) {
-        this.title = tittle;
+    public ExamModel(String title, String description, Integer timeWatch, String statusType, String coursesEntity) {
+        this.title = title;
         this.description = description;
         this.timeWatch = timeWatch;
         this.statusType = statusType;
         this.coursesEntity = coursesEntity;
     }
 
-    public String getTittle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTittle(String tittle) {
-        this.title = tittle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -53,5 +54,13 @@ public class ExamModel {
 
     public void setCoursesEntity(String coursesEntity) {
         this.coursesEntity = coursesEntity;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

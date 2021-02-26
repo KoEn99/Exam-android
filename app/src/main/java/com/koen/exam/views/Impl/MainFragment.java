@@ -3,12 +3,15 @@ package com.koen.exam.views.Impl;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,20 +37,21 @@ public class MainFragment extends Fragment implements GroupView {
     List<GroupInfo> groupInfoList;
     GroupAdapter groupAdapter;
     View view;
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_main, container, false);
         recyclerView = (RecyclerView)view.findViewById(R.id.recycleGroupView);
         NavigationActivity navigationActivity = (NavigationActivity)getActivity();
+
         groupPresenter = new GroupPresenterImpl(this);
         groupPresenter.getMyGroup();
         return view;
     }
+
+
 
     @Override
     public void createToast(String toastMessage) {

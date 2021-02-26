@@ -40,6 +40,10 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
     DataSingleton dataSingleton;
     SheetsCreateCourse sheetsCreateCourse;
     Toolbar toolbar;
+    MenuItem menuItem;
+    MenuItem item1;
+    Menu appBarMenu;
+    SearchView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +59,7 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
         floatingActionButton.setVisibility(View.GONE);
         main = new MainFragment();
         store = new EditFragment();
-        transaction.replace(R.id.scrim, main);
-        transaction.commit();
+
         bottomSheetBehavior = BottomSheetBehavior.from(navigationView);
         bottomAppBar = (BottomAppBar)findViewById(R.id.bottomAppBar);
         bottomSheetBehavior.setState(STATE_HIDDEN);
@@ -73,14 +76,10 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
             frameLayout.setClickable(true);
             bottomAppBar.setHideOnScroll(false);
         });
-        /*floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sheetsCreateGroup = new SheetsCreateGroup(store);
-                sheetsCreateGroup.show(getSupportFragmentManager(), "TAG");
-                backgroundNavigation.setVisibility(View.INVISIBLE);
-            }
-        });*/
+
+
+        transaction.replace(R.id.scrim, main);
+        transaction.commit();
         bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
@@ -98,9 +97,15 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
             }
         });
     }
+
+    void setVisibleSaveBtn(Boolean flag){
+        item1.setVisible(flag);
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        item1 = appBarMenu.findItem(R.id.save_ques);
 
         switch (item.getItemId()) {
             case R.id.nav_main:
@@ -112,6 +117,7 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
                 frameLayout.setClickable(false);
                 stateBottom = false;
                 menuItem.setVisible(true);
+                item1.setVisible(false);
                 unVisibleArrow();
                 break;
             case R.id.nav_edit:
@@ -124,6 +130,7 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
                 backgroundNavigation.setVisibility(View.INVISIBLE);
                 frameLayout.setClickable(false);
                 menuItem.setVisible(false);
+                item1.setVisible(false);
                 unVisibleArrow();
                 break;
             case R.id.nav_manage:
@@ -137,6 +144,13 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
         ft.commit();
         return true;
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        getSupportFragmentManager().popBackStack();
+    }
+
     public void visibleArrow(){
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -145,12 +159,27 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowHomeEnabled(false);
     }
-    MenuItem menuItem;
-    SearchView searchView;
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.save_ques:{
+
+                return false;
+            }
+        }
+
+        return false;
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        appBarMenu = menu;
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.app_bar_menu, menu);
+        item1 = appBarMenu.findItem(R.id.save_ques);
+        item1.setVisible(false);
         menuItem = menu.findItem(R.id.search_menu);
         searchView = (SearchView)menuItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

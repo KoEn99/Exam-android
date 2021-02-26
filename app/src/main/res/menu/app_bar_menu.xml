@@ -8,4 +8,10 @@
         app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         />
+    <item
+        android:title="Сохранить"
+        android:icon="@drawable/ic_baseline_save_24"
+        android:id="@+id/save_ques"
+        app:showAsAction="ifRoom|collapseActionView"
+        />
 </menu>

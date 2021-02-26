@@ -1,5 +1,6 @@
 package com.koen.exam.presenter.Impl;
 
+import com.koen.exam.model.GenericResponse;
 import com.koen.exam.service.Impl.ExamModel;
 import com.koen.exam.views.CreateExamMethods;
 
@@ -18,8 +19,8 @@ public class ExamPresenterImpl implements CreateExamMethods.Presenter {
     }
 
     @Override
-    public void onSuccessResponse() {
-        view.onSuccess();
+    public void onSuccessResponse(GenericResponse<com.koen.exam.model.ExamModel> model) {
+        view.onSuccess(model);
     }
 
     @Override

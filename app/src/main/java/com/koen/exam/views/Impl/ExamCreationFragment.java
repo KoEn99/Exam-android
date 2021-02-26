@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.koen.exam.R;
+import com.koen.exam.model.ExamModel;
+import com.koen.exam.model.GenericResponse;
 import com.koen.exam.views.CreateExamMethods;
 import com.koen.exam.views.dialogs.SheetCreateExam;
 
@@ -47,8 +49,9 @@ public class ExamCreationFragment extends Fragment implements View.OnClickListen
 
     }
 
+
     @Override
-    public void onSuccess() {
+    public void onSuccess(GenericResponse<ExamModel> model) {
 
     }
 

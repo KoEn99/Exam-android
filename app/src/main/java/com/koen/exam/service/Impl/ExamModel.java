@@ -21,11 +21,11 @@ public class ExamModel implements CreateExamMethods.Model {
         NetworkService.getInstance()
                 .getJSONApi()
                 .createExam(modelExam,token)
-                .enqueue(new Callback<GenericResponse<CourseInfo>>() {
+                .enqueue(new Callback<GenericResponse<com.koen.exam.model.ExamModel>>() {
                     @Override
-                    public void onResponse(Call<GenericResponse<CourseInfo>> call, Response<GenericResponse<CourseInfo>> response) {
+                    public void onResponse(Call<GenericResponse<com.koen.exam.model.ExamModel>> call, Response<GenericResponse<com.koen.exam.model.ExamModel>> response) {
                         if(response.isSuccessful()){
-                            presenter.onSuccessResponse();
+                            presenter.onSuccessResponse(response.body());
                         }
                         else{
                             presenter.onFailResponse();
@@ -33,7 +33,7 @@ public class ExamModel implements CreateExamMethods.Model {
                     }
 
                     @Override
-                    public void onFailure(Call<GenericResponse<CourseInfo>> call, Throwable t) {
+                    public void onFailure(Call<GenericResponse<com.koen.exam.model.ExamModel>> call, Throwable t) {
                         presenter.onFailResponse();
                     }
                 });
