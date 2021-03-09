@@ -33,7 +33,7 @@ public class SheetClickOnEditRecycle extends BottomSheetDialogFragment {
         editLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    getActivity().getSupportFragmentManager().beginTransaction().
+                    getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
                             replace(R.id.scrim, new ExamListFragment(idCourse)).commit();
                     SheetClickOnEditRecycle.this.dismiss();
             }
@@ -41,7 +41,7 @@ public class SheetClickOnEditRecycle extends BottomSheetDialogFragment {
         groupLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
                         replace(R.id.scrim, new GroupFragment(idCourse)).commit();
                 SheetClickOnEditRecycle.this.dismiss();
             }

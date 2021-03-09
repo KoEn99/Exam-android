@@ -16,17 +16,16 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.koen.exam.R;
+import com.koen.exam.model.GenericResponse;
 import com.koen.exam.model.OneAnsInfo;
 import com.koen.exam.model.QuestionData;
 import com.koen.exam.presenter.Impl.SaveQuestionPresenter;
-import com.koen.exam.views.CreateExamMethods;
-import com.koen.exam.views.CreateQuestionsMethods;
-import com.koen.exam.views.SaveQuestionMethods;
+import com.koen.exam.views.FragmentAnswersMethods;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentFreeAns extends Fragment implements SaveQuestionMethods.View {
+public class FragmentFreeAns extends Fragment implements FragmentAnswersMethods.View {
     EditText questionTxt, answerTxt;
     SaveQuestionPresenter presenter;
     NavigationActivity navigationActivity;
@@ -69,6 +68,17 @@ public class FragmentFreeAns extends Fragment implements SaveQuestionMethods.Vie
         Toast.makeText(getActivity(),"Вопрос сохранен",Toast.LENGTH_SHORT).show();
         getFragmentManager().beginTransaction().replace(R.id.scrim,new FragmentCreateQuestions(examId,null)).commit();
     }
+
+    @Override
+    public void onSuccessLoadAnswers(GenericResponse<QuestionData> answers) {
+
+    }
+
+    @Override
+    public void onFailLoadAnswers(GenericResponse<QuestionData> answers) {
+
+    }
+
 
     @Override
     public void onFailure() {

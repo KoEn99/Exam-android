@@ -42,11 +42,11 @@ public class SheetCreateQuestion extends BottomSheetDialogFragment implements Vi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.oneAnswer:{
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("CreateQuestionsFragment").replace(R.id.scrim,new FragmentOneAns(1,idExam)).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("CreateQuestionsFragment").replace(R.id.scrim,new FragmentOneAns(1,idExam,-1)).commit();
                 break;
             }
             case R.id.manyAns:{
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("CreateQuestionsFragment").replace(R.id.scrim,new FragmentOneAns(2,idExam)).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("CreateQuestionsFragment").replace(R.id.scrim,new FragmentOneAns(2,idExam,-1)).commit();
                 break;
             }
             case R.id.freeAns:{
