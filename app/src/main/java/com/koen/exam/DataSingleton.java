@@ -6,14 +6,17 @@ public class DataSingleton {
     private static DataSingleton INSTANCE;
     public String jwtToken;
     public SharedPreferences sharedPreferences;
-
+    public String descTest;
+    public String titleTest;
+    public Integer idTest;
 
     private DataSingleton() {
 
     }
 
     public static DataSingleton getInstance() {
-        if (INSTANCE == null) return INSTANCE = new DataSingleton();
+        if (INSTANCE == null)
+            return INSTANCE = new DataSingleton();
         else return INSTANCE;
     }
 

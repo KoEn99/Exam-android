@@ -93,8 +93,6 @@ public class AnswersAdapter extends RecyclerView.Adapter<AnswersAdapter.ViewHold
         }
     }
 
-
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -107,9 +105,6 @@ public class AnswersAdapter extends RecyclerView.Adapter<AnswersAdapter.ViewHold
         OneAnsInfo oneAnsInfo = oneAnsInfos.get(position);
         holder.editAns.setText(oneAnsInfo.getAnswer());
         holder.trueAns.setChecked(oneAnsInfo.getTrueAns());
-
-
-
     }
 
 

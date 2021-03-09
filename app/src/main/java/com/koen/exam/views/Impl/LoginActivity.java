@@ -83,8 +83,14 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.postAuthButton: {
-                authPresenter.loginUser(emailEditText.getText().toString() + ":" +
-                        passwordEditText.getText().toString());
+                if(!emailEditText.getText().toString().trim().equals("") && !passwordEditText.getText().toString().trim().equals("")){
+                    authPresenter.loginUser(emailEditText.getText().toString().trim() + ":" +
+                            passwordEditText.getText().toString().trim());
+                }
+                else{
+                    Toast.makeText(this,"Все поля должны быть заполнены",Toast.LENGTH_SHORT).show();
+                }
+
                 break;
             }
             case R.id.registerTextView:{

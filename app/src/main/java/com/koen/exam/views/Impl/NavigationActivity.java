@@ -41,7 +41,7 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
     SheetsCreateCourse sheetsCreateCourse;
     Toolbar toolbar;
     MenuItem menuItem;
-    MenuItem item1;
+    MenuItem item1, itemEdit;
     Menu appBarMenu;
     SearchView searchView;
     @Override
@@ -50,8 +50,7 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
         setContentView(R.layout.activity_navigation);
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-/*        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);*/
+
         NavigationView navigationView = (NavigationView)findViewById(R.id.navigation);
         navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -76,8 +75,6 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
             frameLayout.setClickable(true);
             bottomAppBar.setHideOnScroll(false);
         });
-
-
         transaction.replace(R.id.scrim, main);
         transaction.commit();
         bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
@@ -100,6 +97,10 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
 
     void setVisibleSaveBtn(Boolean flag){
         item1.setVisible(flag);
+    }
+
+    void setVisibleEditBtn(Boolean flag){
+        itemEdit.setVisible(flag);
     }
 
     @Override
@@ -148,7 +149,6 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        getSupportFragmentManager().popBackStack();
     }
 
     public void visibleArrow(){
@@ -167,6 +167,10 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
 
                 return false;
             }
+            case android.R.id.home:{
+                onBackPressed();
+                return true;
+            }
         }
 
         return false;
@@ -180,6 +184,8 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
         menuInflater.inflate(R.menu.app_bar_menu, menu);
         item1 = appBarMenu.findItem(R.id.save_ques);
         item1.setVisible(false);
+        itemEdit = appBarMenu.findItem(R.id.edit_test);
+        itemEdit.setVisible(false);
         menuItem = menu.findItem(R.id.search_menu);
         searchView = (SearchView)menuItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

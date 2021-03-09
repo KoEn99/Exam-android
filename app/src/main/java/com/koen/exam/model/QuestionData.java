@@ -3,6 +3,7 @@ package com.koen.exam.model;
 import java.util.List;
 
 public class QuestionData {
+    private Long id;
     private String question;
     private String questionType;
     private Float questionScore;
@@ -17,12 +18,20 @@ public class QuestionData {
         this.examId = id;
     }
 
-    public Integer getId() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getExamId() {
         return examId;
     }
 
-    public void setId(Integer id) {
-        this.examId = id;
+    public void setExamId(Integer examId) {
+        this.examId = examId;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getQuestion() {

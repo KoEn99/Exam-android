@@ -30,12 +30,15 @@ public class AuthServiceImpl implements AuthService {
                     @SneakyThrows
                     @Override
                     public void onResponse(Call<GenericResponse<Token>> call, Response<GenericResponse<Token>> response) {
-                        if (response.isSuccessful()) authPresenter.listenerFinish(response.body());
-                        else authPresenter.listenerFinishError(response.errorBody() != null ? response.errorBody().string() : null);
+                        if (response.isSuccessful())
+                            authPresenter.listenerFinish(response.body());
+                        else
+                            authPresenter.listenerFinishError(response.errorBody() != null ? response.errorBody().string() : null);
                     }
 
                     @Override
                     public void onFailure(Call<GenericResponse<Token>> call, Throwable t) {
+
                     }
                 });
     }

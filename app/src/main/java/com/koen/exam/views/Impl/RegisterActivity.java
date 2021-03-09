@@ -55,16 +55,28 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
+        String email, password, name, secondName, middleName;
+        email = loginEditText.getText().toString().trim();
+        password = passwordEditText.getText().toString().trim();
+        name = nameEditText.getText().toString();
+        secondName = secondNameEditText.getText().toString().trim();
+        middleName = middleNameEditText.getText().toString().trim();
         switch (v.getId()){
             case R.id.registerButton:{
-                AuthDto authDto = new AuthDto(
-                        Objects.requireNonNull(loginEditText.getText()).toString(),
-                        Objects.requireNonNull(passwordEditText.getText()).toString(),
-                        Objects.requireNonNull(nameEditText.getText()).toString(),
-                        Objects.requireNonNull(secondNameEditText.getText()).toString(),
-                        Objects.requireNonNull(middleNameEditText.getText()).toString(),
-                        "USER");
-                registerPresenter.registerUser(authDto);
+                if(!email.equals("")&&!password.equals("")&&!name.equals("")&&!secondName.equals("")&&!middleName.equals("")){
+                    AuthDto authDto = new AuthDto(
+                            Objects.requireNonNull(email),
+                            Objects.requireNonNull(password),
+                            Objects.requireNonNull(name),
+                            Objects.requireNonNull(secondName),
+                            Objects.requireNonNull(middleName),
+                            "USER");
+                    registerPresenter.registerUser(authDto);
+                }
+                else{
+                    Toast.makeText(this,"Все поля должны быть заполнены",Toast.LENGTH_SHORT).show();
+                }
+
                 break;
             }
         }
