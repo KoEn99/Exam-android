@@ -48,7 +48,7 @@ public class SheetCreateExam extends BottomSheetDialogFragment implements View.O
             presenter.postCreateExam(new ExamModel(editExamName.getText().toString(),
                     editExamDesc.getText().toString(),
                     0,
-                    "NONACTIVE",
+                    "ACTIVE",
                     courseId), DataSingleton.getInstance().jwtToken);
         }
     }

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.koen.exam.R;
 import com.koen.exam.model.CourseInfo;
 import com.koen.exam.model.GroupInfo;
+import com.koen.exam.views.Impl.FragmentSubsExams;
 import com.koen.exam.views.dialogs.SheetClickOnEditRecycle;
 
 import java.util.List;
@@ -43,10 +44,16 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder>{
         GroupInfo groupInfo = groupInfoList.get(position);
         holder.titleTextView.setText(groupInfo.getCoursesEntity().getTitle());
         holder.descTextView.setText(groupInfo.getCoursesEntity().getDescription());
-        holder.cardView.setOnClickListener(v -> {
-            SheetClickOnEditRecycle sheetsCreateGroup = new SheetClickOnEditRecycle();
-            sheetsCreateGroup.show(context.getSupportFragmentManager(), "TAG1");
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.scrim,new FragmentSubsExams(groupInfo.getCoursesEntity().getId()))
+                        .addToBackStack(null).commit();
+            }
         });
+
     }
 
     @Override

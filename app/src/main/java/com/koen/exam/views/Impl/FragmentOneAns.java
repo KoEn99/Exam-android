@@ -146,7 +146,7 @@ public class FragmentOneAns extends Fragment implements View.OnClickListener, Fr
     @Override
     public void onSuccess() {
         Toast.makeText(getActivity(),"Вопрос сохранен",Toast.LENGTH_SHORT).show();
-        getFragmentManager().beginTransaction().replace(R.id.scrim,new FragmentCreateQuestions(examId,null)).commit();
+        getFragmentManager().popBackStack();
     }
 
     @Override

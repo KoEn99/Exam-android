@@ -43,14 +43,17 @@ public class SheetCreateQuestion extends BottomSheetDialogFragment implements Vi
         switch (v.getId()){
             case R.id.oneAnswer:{
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("CreateQuestionsFragment").replace(R.id.scrim,new FragmentOneAns(1,idExam,-1)).commit();
+                SheetCreateQuestion.this.dismiss();
                 break;
             }
             case R.id.manyAns:{
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("CreateQuestionsFragment").replace(R.id.scrim,new FragmentOneAns(2,idExam,-1)).commit();
+                SheetCreateQuestion.this.dismiss();
                 break;
             }
             case R.id.freeAns:{
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("CreateQuestionsFragment").replace(R.id.scrim,new FragmentFreeAns(3)).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("CreateQuestionsFragment").replace(R.id.scrim,new FragmentFreeAns(idExam)).commit();
+                SheetCreateQuestion.this.dismiss();
                 break;
             }
         }
