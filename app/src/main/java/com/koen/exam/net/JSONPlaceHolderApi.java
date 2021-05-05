@@ -1,13 +1,18 @@
 package com.koen.exam.net;
 
 import com.koen.exam.model.AnswerResponse;
+import com.koen.exam.model.AnswersToSendData;
 import com.koen.exam.model.AuthDto;
 import com.koen.exam.model.CourseInfo;
 import com.koen.exam.model.ExamModel;
 import com.koen.exam.model.GenericResponse;
 import com.koen.exam.model.GroupInfo;
 import com.koen.exam.model.OneAnsInfo;
+import com.koen.exam.model.QuestionAnswerModel;
 import com.koen.exam.model.QuestionData;
+import com.koen.exam.model.ScoreModel;
+import com.koen.exam.model.SendQuestionAnswersModel;
+import com.koen.exam.model.SubCoursesModel;
 import com.koen.exam.model.Token;
 import com.koen.exam.model.UserGroup;
 
@@ -21,6 +26,15 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface JSONPlaceHolderApi {
+
+    @POST("/try/submit")
+    Call<GenericResponse<ScoreModel>> sendMyResults(@Body SendQuestionAnswersModel sendQuestionAnswersModel, @Header("Authorization") String token);
+
+    @GET("/exam/{id}")
+    Call<GenericResponse<List<QuestionData>>> getQuestionsExam(@Path("id")Long id, @Header("Authorization") String token);
+
+    @GET("/course/{id}")
+    Call<GenericResponse<SubCoursesModel>> getSubscribedExam(@Path("id") String id, @Header("Authorization") String token);
 
     @GET("/question/page/{questionId}")
     Call<GenericResponse<QuestionData>> getAnswers(@Path("questionId")Long id, @Header("Authorization") String token);

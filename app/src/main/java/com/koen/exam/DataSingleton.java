@@ -2,6 +2,10 @@ package com.koen.exam;
 
 import android.content.SharedPreferences;
 
+import com.koen.exam.model.QuestionData;
+
+import java.util.List;
+
 public class DataSingleton {
     private static DataSingleton INSTANCE;
     public String jwtToken;
@@ -9,6 +13,7 @@ public class DataSingleton {
     public String descTest;
     public String titleTest;
     public Integer idTest;
+    public List<QuestionData> questionDataList;
 
     private DataSingleton() {
 

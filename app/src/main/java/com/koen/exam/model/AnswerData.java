@@ -3,10 +3,19 @@ package com.koen.exam.model;
 public class AnswerData {
     private String answer;
     private Boolean answerCorrect;
+    private Long id;
 
     public AnswerData(String answer, Boolean answerCorrect) {
         this.answer = answer;
         this.answerCorrect = answerCorrect;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAnswer() {
