@@ -46,7 +46,7 @@ public class AuthPresenterImpl implements AuthPresenter {
     public void listenerFinish(GenericResponse<?> finishData) {
         Token token = (Token)finishData.getResponseData();
         getMessageAnswer("Авторизация прошла успешно");
-        loginView.saveJwtToken(token.getAuthToken());
+        loginView.saveJwtToken(token);
         loginView.selectActivity();
     }
 

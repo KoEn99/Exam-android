@@ -30,10 +30,14 @@ public class FragmentFreeAns extends Fragment implements FragmentAnswersMethods.
     SaveQuestionPresenter presenter;
     NavigationActivity navigationActivity;
     List<OneAnsInfo> listAns;
+    List<OneAnsInfo> infoList;
+
+    long questionId;
     int examId;
 
-    public FragmentFreeAns(int examId){
+    public FragmentFreeAns(int examId,long questionId){
         this.examId = examId;
+        this.questionId = questionId;
     }
 
     @Override
@@ -59,6 +63,11 @@ public class FragmentFreeAns extends Fragment implements FragmentAnswersMethods.
         navigationActivity = (NavigationActivity) getActivity();
         FloatingActionButton fab = navigationActivity.findViewById(R.id.fab);
         fab.hide();
+
+        if(questionId!=-1){
+            presenter.postGetAnswers(questionId);
+        }
+
         return view;
     }
 
@@ -66,12 +75,13 @@ public class FragmentFreeAns extends Fragment implements FragmentAnswersMethods.
     @Override
     public void onSuccess() {
         Toast.makeText(getActivity(),"Вопрос сохранен",Toast.LENGTH_SHORT).show();
-        getFragmentManager().beginTransaction().replace(R.id.scrim,new FragmentCreateQuestions(examId,null)).commit();
+        getFragmentManager().popBackStack();
     }
 
     @Override
     public void onSuccessLoadAnswers(GenericResponse<QuestionData> answers) {
-
+        questionTxt.setText(answers.getResponseData().getQuestion());
+        answerTxt.setText(answers.getResponseData().getAnswers().get(0).getAnswer());
     }
 
     @Override

@@ -13,6 +13,10 @@
             android:id="@+id/nav_store"
             android:icon="@drawable/vector_store"
             android:title="@string/menuStore" />
+        <item
+            android:id="@+id/nav_results"
+            android:icon="@drawable/ic_results"
+            android:title="Результаты"/>
     </group>
     <item android:title="Дополнительно">
         <menu>

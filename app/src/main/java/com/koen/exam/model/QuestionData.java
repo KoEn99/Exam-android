@@ -9,6 +9,7 @@ public class QuestionData {
     private Float questionScore;
     private Integer examId;
     private List<OneAnsInfo> answers;
+    private Analysis analysisDto;
 
     public QuestionData(String question, String questionType, Float questionScore, List<OneAnsInfo> answers, Integer id) {
         this.question = question;
@@ -64,5 +65,13 @@ public class QuestionData {
 
     public void setAnswers(List<OneAnsInfo> answers) {
         this.answers = answers;
+    }
+
+    public Analysis getAnalysisDto() {
+        return analysisDto;
+    }
+
+    public void setAnalysisDto(Analysis analysisDto) {
+        this.analysisDto = analysisDto;
     }
 }

@@ -12,6 +12,8 @@ public class DataSingleton {
     public SharedPreferences sharedPreferences;
     public String descTest;
     public String titleTest;
+    public String fio;
+    public String email;
     public Integer idTest;
     public List<QuestionData> questionDataList;
 
