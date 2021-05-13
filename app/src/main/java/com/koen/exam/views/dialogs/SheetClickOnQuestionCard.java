@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.koen.exam.R;
 import com.koen.exam.model.QuestionData;
+import com.koen.exam.model.TypeQuestion;
+import com.koen.exam.views.Impl.FragmentFreeAns;
 import com.koen.exam.views.Impl.FragmentOneAns;
 
 public class SheetClickOnQuestionCard extends BottomSheetDialogFragment {
@@ -35,18 +37,23 @@ public class SheetClickOnQuestionCard extends BottomSheetDialogFragment {
         editQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if(questionType.equals("SINGLE")){
+               if(questionType.equals(TypeQuestion.SINGLE)){
                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.scrim,
                            new FragmentOneAns(1,idExam,questionData.getId())).addToBackStack(null).commit();
                    SheetClickOnQuestionCard.this.dismiss();
                }
-               else if(questionType.equals("MULTIPLE")){
+               else if(questionType.equals(TypeQuestion.MULTIPLE)){
                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.scrim,
                            new FragmentOneAns(2,idExam,questionData.getId())).addToBackStack(null).commit();
                    SheetClickOnQuestionCard.this.dismiss();
                }
+               else{
+                   getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.scrim,
+                           new FragmentFreeAns(idExam,questionData.getId())).addToBackStack(null).commit();
+                   SheetClickOnQuestionCard.this.dismiss();
+               }
             }
-        });
+        })  ;
         deleteQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

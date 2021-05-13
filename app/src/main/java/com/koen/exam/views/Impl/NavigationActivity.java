@@ -2,13 +2,16 @@ package com.koen.exam.views.Impl;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,6 +47,8 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
     MenuItem item1, itemEdit;
     Menu appBarMenu;
     SearchView searchView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +57,13 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
         setSupportActionBar(toolbar);
 
         NavigationView navigationView = (NavigationView)findViewById(R.id.navigation);
+        TextView fioTxt, emailTxt;
+        View ve = navigationView.getHeaderView(0);
+        fioTxt = ve.findViewById(R.id.fioTextView);
+        emailTxt = ve.findViewById(R.id.emailTextView);
+        fioTxt.setText(DataSingleton.getInstance().sharedPreferences.getString("FIO",""));
+        emailTxt.setText(DataSingleton.getInstance().sharedPreferences.getString("EMAIL",""));
+
         navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         floatingActionButton = (FloatingActionButton)findViewById(R.id.fab);
@@ -64,7 +76,7 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
         bottomSheetBehavior.setState(STATE_HIDDEN);
         frameLayout = (FrameLayout)findViewById(R.id.scrim);
         backgroundNavigation = (FrameLayout)findViewById(R.id.backgroundNavigation);
-        bottomSheetBehavior. setPeekHeight(700);
+        bottomSheetBehavior.setPeekHeight(700);
         bottomAppBar.setNavigationOnClickListener(v -> {
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             backgroundNavigation.setVisibility(View.VISIBLE);
@@ -75,7 +87,8 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
             frameLayout.setClickable(true);
             bottomAppBar.setHideOnScroll(false);
         });
-        transaction.replace(R.id.scrim, main);
+
+        transaction.add(R.id.scrim, main);
         transaction.commit();
         bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
@@ -140,6 +153,18 @@ public class NavigationActivity extends AppCompatActivity  implements Navigation
                 dataSingleton.saveInSharedPreferencesString("jwtToken", "");
                 startActivity(new Intent(NavigationActivity.this, MainActivity.class));
                 finish();
+            case R.id.nav_results:
+                getSupportFragmentManager().beginTransaction().replace(R.id.scrim,new FragmentResultsTeacher()).commit();
+                bottomSheetBehavior.setState(STATE_HIDDEN);
+                floatingActionButton.show();
+                bottomAppBar.setHideOnScroll(true);
+                stateBottom = true;
+                backgroundNavigation.setVisibility(View.INVISIBLE);
+                frameLayout.setClickable(false);
+                menuItem.setVisible(false);
+                item1.setVisible(false);
+                unVisibleArrow();
+
         }
 
         ft.commit();

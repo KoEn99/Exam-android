@@ -40,10 +40,10 @@ public class FragmentPassingTest extends Fragment implements PassingTestFragment
         View view = inflater.inflate(R.layout.fragment_passing_test,container,false);
         tabLayout = view.findViewById(R.id.tabLayout);
         viewPager2 = view.findViewById(R.id.pagerQ);
-
+        tabLayout.setupWithViewPager(viewPager2);
         PassingTestFragmentPresenter presenter = new PassingTestFragmentPresenter(this);
         presenter.postRequestGetQuestionsExam(idExam);
-
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -72,10 +72,6 @@ public class FragmentPassingTest extends Fragment implements PassingTestFragment
         questionDataList.add(new QuestionData("","END",(float)0.0,null,null));
         DataSingleton.getInstance().questionDataList = questionDataList;
 
-        for(int i = 0;i<questionDataList.size()-1;i++){
-            tabLayout.addTab(tabLayout.newTab().setText("Вопрос " + String.valueOf(i+1)));
-        }
-        tabLayout.addTab(tabLayout.newTab().setText("Завершить"));
         PagerAdapter pagerAdapter = new PagerAdapter(getActivity().getSupportFragmentManager(),DataSingleton.getInstance().questionDataList);
         viewPager2.setAdapter(pagerAdapter);
     }

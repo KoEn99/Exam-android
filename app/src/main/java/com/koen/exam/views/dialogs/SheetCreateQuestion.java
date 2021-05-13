@@ -52,7 +52,7 @@ public class SheetCreateQuestion extends BottomSheetDialogFragment implements Vi
                 break;
             }
             case R.id.freeAns:{
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("CreateQuestionsFragment").replace(R.id.scrim,new FragmentFreeAns(idExam)).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("CreateQuestionsFragment").replace(R.id.scrim,new FragmentFreeAns(idExam,-1)).commit();
                 SheetCreateQuestion.this.dismiss();
                 break;
             }

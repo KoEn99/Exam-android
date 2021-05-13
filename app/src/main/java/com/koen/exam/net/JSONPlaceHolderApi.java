@@ -10,6 +10,7 @@ import com.koen.exam.model.GroupInfo;
 import com.koen.exam.model.OneAnsInfo;
 import com.koen.exam.model.QuestionAnswerModel;
 import com.koen.exam.model.QuestionData;
+import com.koen.exam.model.ResultsOfStudents;
 import com.koen.exam.model.ScoreModel;
 import com.koen.exam.model.SendQuestionAnswersModel;
 import com.koen.exam.model.SubCoursesModel;
@@ -30,8 +31,8 @@ public interface JSONPlaceHolderApi {
     @POST("/try/submit")
     Call<GenericResponse<ScoreModel>> sendMyResults(@Body SendQuestionAnswersModel sendQuestionAnswersModel, @Header("Authorization") String token);
 
-    @GET("/exam/{id}")
-    Call<GenericResponse<List<QuestionData>>> getQuestionsExam(@Path("id")Long id, @Header("Authorization") String token);
+    @GET("/exam/{examId}/play")
+    Call<GenericResponse<List<QuestionData>>> getQuestionsExam(@Path("examId")Long id, @Header("Authorization") String token);
 
     @GET("/course/{id}")
     Call<GenericResponse<SubCoursesModel>> getSubscribedExam(@Path("id") String id, @Header("Authorization") String token);
@@ -80,5 +81,7 @@ public interface JSONPlaceHolderApi {
 
     @POST("/register")
     Call<GenericResponse<AnswerResponse>> createUser(@Body AuthDto authDto);
+    @GET("/stat/group/{groupId}/exam/{examId}")
+    Call<GenericResponse<List<ResultsOfStudents>>> getStudentResults(@Header("Authorization") String authToken, @Path("groupId") String groupId,@Path("examId") int examId);
 
 }

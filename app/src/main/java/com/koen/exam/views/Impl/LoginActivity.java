@@ -16,6 +16,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.koen.exam.DataSingleton;
 import com.koen.exam.MainActivity;
 import com.koen.exam.R;
+import com.koen.exam.model.Token;
 import com.koen.exam.presenter.AuthPresenter;
 import com.koen.exam.presenter.Impl.AuthPresenterImpl;
 import com.koen.exam.service.AuthService;
@@ -66,9 +67,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
     }
 
     @Override
-    public void saveJwtToken(String jwtToken){
-        dataSingleton.saveInSharedPreferencesString("jwtToken", "Bearer " + jwtToken);
-        dataSingleton.jwtToken = "Bearer " + jwtToken;
+    public void saveJwtToken(Token jwtToken){
+        dataSingleton.saveInSharedPreferencesString("jwtToken", "Bearer " + jwtToken.getAuthToken());
+        dataSingleton.saveInSharedPreferencesString("FIO",jwtToken.getFio());
+        dataSingleton.saveInSharedPreferencesString("EMAIL",jwtToken.getEmail());
+        dataSingleton.jwtToken = "Bearer " + jwtToken.getAuthToken();
     }
 
     @Override

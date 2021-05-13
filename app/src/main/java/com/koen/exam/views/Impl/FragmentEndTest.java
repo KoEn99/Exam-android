@@ -17,6 +17,7 @@ import com.koen.exam.model.AnswersToSendData;
 import com.koen.exam.model.QuestionAnswerModel;
 import com.koen.exam.model.ScoreModel;
 import com.koen.exam.model.SendQuestionAnswersModel;
+import com.koen.exam.model.TypeQuestion;
 import com.koen.exam.presenter.Impl.FragmentEndTestPresenter;
 import com.koen.exam.views.FragmentEndTestMethods;
 
@@ -47,21 +48,28 @@ public class FragmentEndTest extends Fragment implements View.OnClickListener, F
                     break;
                 }
                 long idQues = DataSingleton.getInstance().questionDataList.get(i).getId();
-                for(int j =0;j<DataSingleton.getInstance().questionDataList.get(i).getAnswers().size();j++){
-                    if(DataSingleton.getInstance().questionDataList.get(i).getAnswers().get(j).getTrueAns()){
-                        answers.add(new AnswersToSendData(DataSingleton.getInstance().
-                                questionDataList.get(i).
-                                getAnswers().get(j).
-                                getId(),DataSingleton
-                                .getInstance().
-                                        questionDataList.get(i)
-                                .getAnswers().get(j).getAnswer()));
+                if(!DataSingleton.getInstance().questionDataList.get(i).getQuestionType().equals(TypeQuestion.FREE_ANSWER.toString())) {
+                    for (int j = 0; j < DataSingleton.getInstance().questionDataList.get(i).getAnswers().size(); j++) {
+                        if (DataSingleton.getInstance().questionDataList.get(i).getAnswers().get(j).getTrueAns()) {
+                            answers.add(new AnswersToSendData(DataSingleton.getInstance().
+                                    questionDataList.get(i).
+                                    getAnswers().get(j).
+                                    getId(), DataSingleton
+                                    .getInstance().
+                                            questionDataList.get(i)
+                                    .getAnswers().get(j).getAnswer()));
+                        }
                     }
+                    listAnswers.add(new QuestionAnswerModel(idQues, answers, DataSingleton.
+                            getInstance().
+                            questionDataList.get(i).getQuestionType()));
+                    answers = new ArrayList<>();
                 }
-                listAnswers.add(new QuestionAnswerModel(idQues,answers,DataSingleton.
-                        getInstance().
-                        questionDataList.get(i).getQuestionType()));
-                answers = new ArrayList<>();
+                else{
+                    answers.add(new AnswersToSendData(null,DataSingleton.getInstance().questionDataList.get(i).getAnswers().get(0).getAnswer()));
+                    listAnswers.add(new QuestionAnswerModel(idQues,answers,DataSingleton.getInstance().questionDataList.get(i).getQuestionType()));
+                    answers = new ArrayList<>();
+                }
             }
             SendQuestionAnswersModel sendQuestionAnswersModel = new SendQuestionAnswersModel(listAnswers);
             endTestPresenter.sendRequestResults(sendQuestionAnswersModel);
@@ -71,8 +79,8 @@ public class FragmentEndTest extends Fragment implements View.OnClickListener, F
 
     @Override
     public void onSuccessSendResults(ScoreModel score) {
-        Toast.makeText(getActivity(),"Ваш результат: "+ String.valueOf(score.getScore()+" из "+ score.getGeneralScore()),Toast.LENGTH_SHORT).show();
         DataSingleton.getInstance().questionDataList = null;
+        getFragmentManager().beginTransaction().replace(R.id.scrim,new FragmentTestResults(score)).commit();
     }
 
     @Override

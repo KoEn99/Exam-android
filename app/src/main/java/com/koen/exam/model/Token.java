@@ -7,5 +7,7 @@ import lombok.Data;
 public class Token {
     private String authToken;
     private String refreshToken;
+    private String fio;
+    private String email;
 }
 

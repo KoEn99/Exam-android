@@ -104,6 +104,9 @@ public class FragmentCreateQuestions extends Fragment implements View.OnClickLis
     @Override
     public void onSuccessResponse(GenericResponse<List<QuestionData>> data) {
         questionList = data.getResponseData();
+        for(int i=0;i<questionList.size();i++){
+            questionList.get(i).setExamId(idExam);
+        }
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         adapter = new QuestionsAdapter(questionList,getActivity());
