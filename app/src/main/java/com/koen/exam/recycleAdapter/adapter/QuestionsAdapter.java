@@ -49,16 +49,14 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         QuestionData questionData = itemList.get(position);
         holder.questionText.setText(questionData.getQuestion());
-        switch (questionData.getAnalysisDto().getColor()){
-            case "GREEN":{
-                holder.circleView.setCircleColor(Color.GREEN);
-            }
-            case "RED":{
-                holder.circleView.setCircleColor(Color.RED);
-            }
-            case "YELLOW":{
-                holder.circleView.setCircleColor(Color.YELLOW);
-            }
+        if(questionData.getAnalysisDto().getColor().equals(ColorQuestion.RED.toString())){
+            holder.circleView.setCircleColor(Color.RED);
+        }
+        else if(questionData.getAnalysisDto().getColor().equals(ColorQuestion.GREEN.toString())){
+            holder.circleView.setCircleColor(Color.GREEN);
+        }
+        else{
+            holder.circleView.setCircleColor(Color.YELLOW);
         }
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
