@@ -112,6 +112,7 @@ public class FragmentOneAns extends Fragment implements View.OnClickListener, Fr
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int count = 0;
         String asda = "fds";
         String type = "";
         if(item.getItemId()==R.id.save_ques){
@@ -122,13 +123,24 @@ public class FragmentOneAns extends Fragment implements View.OnClickListener, Fr
             else{
                 type = "MULTIPLE";
             }
-            presenter.postSaveQuestion(
-                    new QuestionData(textQuestion.getText().toString(),
-                    type,
-                            (float)1.0,
-                    infoList,
-                    examId
-            ));
+            for(int i=0; i< infoList.size();i++){
+
+                if(infoList.get(i).getTrueAns()){
+                    count++;
+                }
+            }
+            if(count > 0) {
+                presenter.postSaveQuestion(
+                        new QuestionData(textQuestion.getText().toString(),
+                                type,
+                                (float) 1.0,
+                                infoList,
+                                examId
+                        ));
+            }
+            else{
+                Toast.makeText(getContext(),"Необходимо выбрать хотябы 1 правильный ответ!",Toast.LENGTH_LONG).show();
+            }
             return true;
         }
         return false;
