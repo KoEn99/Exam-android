@@ -51,7 +51,7 @@ public class SubsExamsAdapter extends RecyclerView.Adapter<SubsExamsAdapter.View
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.getSupportFragmentManager().beginTransaction().replace(R.id.scrim,new FragmentPassingTest((long)itemModel.getId())).commit();
+                context.getSupportFragmentManager().beginTransaction().replace(R.id.scrim,new FragmentPassingTest((long)itemModel.getId())).addToBackStack(null).commit();
             }
         });
     }
