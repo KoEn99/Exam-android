@@ -37,12 +37,12 @@ public class SheetClickOnQuestionCard extends BottomSheetDialogFragment {
         editQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if(questionType.equals(TypeQuestion.SINGLE)){
+               if(questionType.equals(TypeQuestion.SINGLE.toString())){
                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.scrim,
                            new FragmentOneAns(1,idExam,questionData.getId())).addToBackStack(null).commit();
                    SheetClickOnQuestionCard.this.dismiss();
                }
-               else if(questionType.equals(TypeQuestion.MULTIPLE)){
+               else if(questionType.equals(TypeQuestion.MULTIPLE.toString())){
                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.scrim,
                            new FragmentOneAns(2,idExam,questionData.getId())).addToBackStack(null).commit();
                    SheetClickOnQuestionCard.this.dismiss();
