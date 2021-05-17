@@ -80,7 +80,7 @@ public class FragmentEndTest extends Fragment implements View.OnClickListener, F
     @Override
     public void onSuccessSendResults(ScoreModel score) {
         DataSingleton.getInstance().questionDataList = null;
-        getFragmentManager().beginTransaction().replace(R.id.scrim,new FragmentTestResults(score)).commit();
+        getFragmentManager().beginTransaction().replace(R.id.scrim,new FragmentTestResults(score)).addToBackStack("passingTest").commit();
     }
 
     @Override

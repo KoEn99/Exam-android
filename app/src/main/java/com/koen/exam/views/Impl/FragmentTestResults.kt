@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.koen.exam.R
 import com.koen.exam.model.ScoreModel
 
@@ -26,6 +27,8 @@ class FragmentTestResults(var score: ScoreModel) : Fragment(),View.OnClickListen
 
     override fun onClick(v: View?) {
         if(v?.id == R.id.backToStartBtn){
+            fragmentManager?.popBackStack()
+            fragmentManager?.popBackStack()
             fragmentManager?.popBackStack()
         }
     }
